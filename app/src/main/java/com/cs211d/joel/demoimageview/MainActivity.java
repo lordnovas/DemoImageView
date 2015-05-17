@@ -1,22 +1,28 @@
 package com.cs211d.joel.demoimageview;
 
-import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
+/**
+ * todo Add Borders around pictures
+ */
 
 
 public class MainActivity extends ActionBarActivity
 {
     private ImageView mIv;
-    ArrayList<Integer> al = new ArrayList<>();
-    int next =0;
+    int mCurrentIndex =0;
+
+    private Integer[] mImageIds = {
+            R.drawable.img1,
+            R.drawable.img2,
+            R.drawable.img3,
+            R.drawable.img4,
+            R.drawable.img5
+    };
+
 
     @Override
     protected  void onCreate(Bundle savedInstanceState)
@@ -24,34 +30,34 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mIv =(ImageView)findViewById(R.id.iv_pics);
-
-        Field fld[] = com.cs211d.joel.demoimageview.R.drawable.class.getFields();
-
-        for(Field f:fld)
-        {
-            Integer imgId = null;
-            try {
-                imgId = f.getInt(null);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-            al.add(imgId);
-        }
-        
     }
 
 
+    public void updateView()
+    {
+        mIv.setImageResource(mImageIds[mCurrentIndex]);
+    }
 
     public void next(View v)
     {
-        Message.message(getApplicationContext(),"Show Next Pic");
-        mIv.setImageResource(al.get(next++));
-    }
+        int numOfPics = mImageIds.length -1;
 
+        ++mCurrentIndex;
+        if(mCurrentIndex > numOfPics)
+        {
+            mCurrentIndex = 0;
+        }
+        updateView();
+    }
 
     public void prev(View v)
     {
-        Message.message(getApplicationContext(),"Show Prev Pic");
+         --mCurrentIndex;
 
+        if(mCurrentIndex <=0)
+        {
+            mCurrentIndex = 0;
+        }
+        updateView();
     }
 }
