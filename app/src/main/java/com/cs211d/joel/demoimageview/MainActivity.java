@@ -54,9 +54,9 @@ public class MainActivity extends ActionBarActivity
     {
          --mCurrentIndex;
 
-        if(mCurrentIndex <=0)
+        if(mCurrentIndex < 0)
         {
-            mCurrentIndex = 0;
+            mCurrentIndex = mImageIds.length-1;
         }
         updateView();
     }
