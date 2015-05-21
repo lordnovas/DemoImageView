@@ -12,6 +12,7 @@
         android:src="@drawable/img1"
         android:id="@+id/iv_pics"
         android:layout_weight="3"
+        android:layout_margin="10dp"
         android:background="@drawable/img_border"/>
 
     <FrameLayout

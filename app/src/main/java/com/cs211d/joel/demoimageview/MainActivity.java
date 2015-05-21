@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 /**
- * todo Add Borders around pictures
+ * todo Add Custom ImageViewClass
  */
 
 
